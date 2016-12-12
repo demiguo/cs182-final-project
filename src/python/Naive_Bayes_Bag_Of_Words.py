@@ -21,23 +21,20 @@ import os
 import random
 import argparse
 
+
 def argument():
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode')
-    parser.add_argument('file')
-    parser.add_argument('--embed', default=200, type=int)
-    parser.add_argument('--vocab', default=3000, type=int)
-    parser.add_argument('--hidden', default=1000, type=int)
-    parser.add_argument('--epoch', default=100, type=int)
-    parser.add_argument('--model', default="model")
-    parser.add_argument('--classes', default=2)
-    parser.add_argument('--use-gpu', action='store_true', default=False)
-    parser.add_argument('--unchain', action='store_true', default=False)
+    parser.add_argument('--data_file', default="../../data/labeled_data.txt")
+    parser.add_argument('--eval_file', default="")
+    parser.add_argument('--max_length', default=500, type=int)
     args = parser.parse_args()
     return args
 
-data_filename = "../../data/labeled_data.txt"
-max_sentence_length = 250
+args = argument()
+data_filename = args.data_file
+eval_filename = ""
+max_sentence_length = args.max_length
+print max_sentence_length
 data = []
 labels = []
 
@@ -73,7 +70,6 @@ for i in range(n):
     else:
         x_test.append(data[i])
         y_test.append(labels[i])
-
 word_to_index = {}
 n = len(x_train)
 num = 0
@@ -151,4 +147,9 @@ def testData(test_data):
     return "%d out of %d: correct %.2lf" % (num_correct, num_total, float(num_correct) / num_total)
 
 test_data = zip(y_test, x_test)
-testData(test_data)
+print testData(test_data)
+
+
+# Evaluation
+label_names = {0:'Trump', 1:'Clinton'}
+print 'eval_file = ', eval_filename

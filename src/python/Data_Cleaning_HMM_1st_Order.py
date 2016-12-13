@@ -71,6 +71,7 @@ def finalize_transition_prob(alpha = 1):
         for c2 in range(26):
             transition_prob[c1].append((float)(transitions[c1][c2] + alpha) / s)
 
+print "Remember to use Data_Cleaning_Typo_Data.py to generate data. Slight modifications could be made if you would like to change the sources of training and testing data"
 keyboard = []
 position = [0] * 26
 def prep():

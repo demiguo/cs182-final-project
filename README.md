@@ -3,9 +3,9 @@
 This codebase includes several classifier which distinguishes texts by Trump and Clinton, and several text generator for Trump-style and Clinton-style texts
 
 # Table Of Contents
-1.(notebook, py)Classifier - Naive Bayes - Bag Of Words
-2.(notebook, py)Classifier - Naive Bayes - Featured Based Approach
-3.(notebook)Classifier - RNN/LSTM
+##(notebook, py)Classifier - Naive Bayes - Bag Of Words
+##(notebook, py)Classifier - Naive Bayes - Featured Based Approach
+##(notebook)Classifier - RNN/LSTM
 4.(notebook, py)Data - Experimental - HMM - Typo Correction
 5.(notebook)Data - Helper Functions
 6.(notebook)Text Generation - Vanilla RNN

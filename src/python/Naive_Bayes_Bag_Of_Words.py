@@ -34,7 +34,6 @@ args = argument()
 data_filename = args.data_file
 eval_filename = ""
 max_sentence_length = args.max_length
-print max_sentence_length
 data = []
 labels = []
 
@@ -144,7 +143,7 @@ def testData(test_data):
     num_correct = 0
     for test_entry in test_data:
         num_correct += (predictLabel(test_entry[1]) == test_entry[0])
-    return "%d out of %d: correct %.2lf" % (num_correct, num_total, float(num_correct) / num_total)
+    return "%d out of %d: correct %.5lf" % (num_correct, num_total, float(num_correct) / num_total)
 
 test_data = zip(y_test, x_test)
 print testData(test_data)
@@ -152,4 +151,3 @@ print testData(test_data)
 
 # Evaluation
 label_names = {0:'Trump', 1:'Clinton'}
-print 'eval_file = ', eval_filename

@@ -23,14 +23,9 @@ def initialize_typo_prob():
         for c2 in range(26):
             typos[c1].append(0)
 
-cnt=0
 def update_typo_prob(sentence1, sentence2):  # correct = sentence1
     n = min(len(sentence1), len(sentence2))
     global cnt
-    if cnt<10:
-        print "sentence1=",sentence1
-        print "sentence2=",sentence2
-        cnt += 1
     for i in range(n):
         c1 = get_index(sentence1[i])
         c2 = get_index(sentence2[i])
@@ -58,12 +53,8 @@ def initialize_transition_prob():
 
 # call the following function to update for each sentence
 # currently, not ignoring the invlaid code
-cnt2=0
 def update_transition_prob(sentence):
     global cnt2
-    if cnt2 < 10:
-        print "transition=",sentence
-        cnt2 +=1
     for i in range(len(sentence) - 1):
         c1 = get_index(sentence[i])
         c2 = get_index(sentence[i + 1])
@@ -91,8 +82,6 @@ def prep():
             for y in range(len(keyboard[x])):
                 if get_index(keyboard[x][y]) == i:
                     position[i] = (x, y)
-    print "position=", position
-    print "keyboard=", keyboard
 
 def check_adjacent(p1, p2):
     x1, y1 = p1
@@ -161,10 +150,6 @@ fo.close()
 
 finalize_transition_prob(1)
 finalize_typo_prob(1)
-print transitions
-for i in range(26):
-    for j in range(26):
-        print "tran[%d][%d] = %.03f" % (i, j, transition_prob[i][j])
 
 
 # calculate maximum likelihood sequence ??? (whatever name)
@@ -226,7 +211,6 @@ def fix_typo(sentence):
 typo_file = "../../data/train_typo.txt"
 correct_file = "../../data/train_correct.txt" 
 output_file = "../../data/typo_correction.txt"
-print "hi"
 fo = open(output_file, "w")
 results = []
 original = []
@@ -238,8 +222,6 @@ with open(typo_file) as f:
         original.append(line)
         fo.write(results[-1])
         line_num += 1
-        if line_num % 100 == 0:
-            print "line=", line_num
         if (line_num >= 20000):
             break
 
@@ -257,7 +239,6 @@ with open(correct_file) as f:
         if cor[0] != ori[0]:
             if cor[0] == res[0]:
                 yes_num += 1
-            print "ori=", ori, " res=", res, " cor=", cor
         total_num += len(cor)
         for i in range(len(cor)):
             if ori[i] != cor[i]:
@@ -265,14 +246,10 @@ with open(correct_file) as f:
             if res[i] != cor[i]:
                 fix_num += 1
         line_num += 1
-        if (line_num % 100 == 0):
-            print "line=", line_num
         if (line_num >= 20000):
             break
 
 fo.close()
-print "yes_num=%d  all=%.03f" % (yes_num, float(yes_num)/wrong_num)
-print "tot=",total_num
-print "fix,wrong=",fix_num,wrong_num
-print fix_num / float(total_num)
-print wrong_num / float(total_num)
+print "[ERROR RATE] COMPARISON RESULT"
+print "After Correction:", fix_num / float(total_num)
+print "Before Correction:", wrong_num / float(total_num)

@@ -13,8 +13,7 @@ This codebase includes several classifier which distinguishes texts by Trump and
 
 # How to Run the Code
 
-For notebooks, simply click "Restart & Run All"
-For python, simply run "python codename.py"
+- For notebooks, simply click "Restart & Run All"
+- For python, simply run "python codename.py"
 
-# Our Report
 
